@@ -6,7 +6,8 @@
     "watch": "nodemon index.js"
   },
   "dependencies": {
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "socket.io": "^2.1.0"
   },
   "devDependencies": {
     "nodemon": "^1.17.4"
