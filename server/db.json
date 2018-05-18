@@ -1,9 +1,37 @@
 {
-  "posts": [
-    { "id": 1, "title": "json-server", "author": "typicode" }
+  "rooms": [
+    {
+      "id": "room1",
+      "title": "lets chat",
+      "owner": "derek@example.com"
+    },
+    {
+      "id": "room2",
+      "title": "lets talk",
+      "owner": "derek2@example.com"
+    }
   ],
-  "comments": [
-    { "id": 1, "body": "some comment", "postId": 1 }
-  ],
-  "profile": { "name": "typicode" }
+  "messages": [
+    {
+      "id": 1,
+      "body": "hello",
+      "time": 1526659776422,
+      "author": "derek@example.com",
+      "roomId": "room1"
+    },
+    {
+      "id": 2,
+      "body": "goodbye",
+      "time": 1526714891616,
+      "author": "derek2@example.com",
+      "roomId": "room2"
+    },
+    {
+      "id": 3,
+      "body": "see you",
+      "time": 1526714946567,
+      "author": "derek2@example.com",
+      "roomId": "room2"
+    }
+  ]
 }
