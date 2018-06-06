@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <title>Sunnygram</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=0, user-scalable=0">
+
+        <link rel="stylesheet" href="vendor/bootstrap.min.css">
+        <script defer src="vendor/jquery.min.js"></script>
+        <script defer src="main.js"></script>
+
+        <style>
+            .spinner {
+                animation-name: spin;
+                animation-duration: 2000ms;
+                animation-iteration-count: infinite;
+                animation-timing-function: linear;
+            }
+            @keyframes spin {
+                from { transform:rotate(0deg); }
+                to {transform:rotate(360deg); }
+            }
+            input {
+              color: grey;
+              outline: none;
+              border: none;
+              font-weight: 500;
+              width: 50%;
+              text-align: right;
+            }
+            h3 {
+              display: flex;
+            }
+            h4 {
+              display: block;
+            }
+            h3, h4 {
+              color: grey;
+              text-align: center;
+              margin: 30px auto;
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+        <!-- Nav Header -->
+        <header class="navbar sticky-top navbar-expand bg-primary navbar-dark">
+            <!-- Logo -->
+            <img src="images/logo.png" alt="Sunnygram" width="60" class="img-fluid navbar-brand">
+
+            <div id="update" class="ml-auto">
+                <a class="icon" href="#update"><img width="25" src="images/sync.png"></a>
+                <img class="icon d-none spinner" width="25" src="images/sync.png">
+            </div>
+
+        </header>
+
+        <!-- Main Conatainer -->
+        <main class="container p-1">
+
+            <!-- Error Alert -->
+            <div class="alert alert-danger text-center m-1" style="display:none;">
+                Could not update Weather
+            </div>
+
+            <h3>
+              <input type="text" id="city" name="city" value="taipei">
+              <span id="date">, DATE</span>
+            </h3>
+            <h4 id="info"></h4>
+
+            <noscript>
+                <div class="text-center mt-5">
+                    Sunnygram requires JavaScript to function.<br>
+                    <small>Please enable JavaScript in your browser settings.</small>
+                </div>
+            </noscript>
+
+        </main>
+    </body>
+
+</html>
