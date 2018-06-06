@@ -2,7 +2,13 @@ function update() {
   // Toggle refresh state
   $('#update .icon').toggleClass('d-none');
 
-  // TODO set date to #date element
+  $('#date').text(
+    `, ${new Date()
+      .toDateString()
+      .split(' ')
+      .slice(1, 3)
+      .join(' ')}`,
+  );
 
   try {
     // TODO fetch weather data
@@ -15,7 +21,7 @@ function update() {
       $('.alert').slideUp();
     }, 2000);
   } finally {
-    // TODO reset update icon
+    $('#update .icon').toggleClass('d-none');
   }
 
 }
