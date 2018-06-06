@@ -1,3 +1,7 @@
+if (navigator.serviceWorker) {
+  // Register SW
+  navigator.serviceWorker.register('sw.js').catch(console.error);
+}
 
 const CORS_ANYWHERE_DOMAIN = 'https://cors-anywhere.herokuapp.com';
 
