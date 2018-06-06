@@ -45,6 +45,14 @@
             h4 .large {
               font-size: 4rem;
             }
+            .charts {
+              margin: auto;
+              width: 80vw;
+              max-width: 600px;
+            }
+            canvas {
+              padding-bottom: 30px;
+            }
         </style>
 
     </head>
@@ -76,6 +84,10 @@
               <span id="date"></span>
             </h3>
             <h4 id="info"></h4>
+
+            <div class="charts">
+              <canvas id="temperature" height="200"></canvas>
+            </div>
 
             <noscript>
                 <div class="text-center mt-5">

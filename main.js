@@ -59,7 +59,42 @@ async function update() {
         100}</span> %
     `);
 
-    // TODO draw chart
+    Chart.defaults.global.defaultFontSize = 14;
+    const weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      today = new Date().getDay(),
+      options = {
+        title: {
+          display: true,
+          text: 'Temperature',
+          fontSize: 14,
+          fontStyle: 'default',
+        },
+        legend: {
+          display: false,
+        },
+        scales: {
+          yAxes: [{ ticks: { callback: v => `${v} \u00B0C` } }],
+        },
+      };
+
+    const ctx = document.getElementById('temperature').getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: [...weekDays.slice(today), ...weekDays.slice(0, today)],
+        datasets: [
+          {
+            data: weatherData.daily.data.map(({ apparentTemperatureMax }) =>
+              f2c(apparentTemperatureMax),
+            ),
+            backgroundColor: ['rgb(40, 167, 69, 0.2)'],
+            borderColor: ['rgb(40, 167, 69, 1)'],
+            borderWidth: 1,
+          },
+        ],
+      },
+      options,
+    });
 
   } catch (e) {
     $('.alert').slideDown();
