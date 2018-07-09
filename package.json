@@ -1,0 +1,22 @@
+{
+  "name": "chattium",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liuderchi/chattium.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liuderchi/chattium/issues"
+  },
+  "homepage": "https://github.com/liuderchi/chattium#readme"
+}
