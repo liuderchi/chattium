@@ -14,12 +14,9 @@
   color: white;
 }
 
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
+.App-welcome {
+  padding: 5px 0;
+  color: darkgrey;
 }
 
 @keyframes App-logo-spin {
