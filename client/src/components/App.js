@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from '../icons/logo.svg';
 import Welcome from './Welcome';
+import MessageCardGroup from './MessageCardGroup';
 import './App.css';
 
 class App extends Component {
@@ -15,6 +16,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
         </header>
         <Welcome numUsers={numUsers} />
+        <MessageCardGroup messages={[1, 2]} />
       </div>
     );
   }
