@@ -22,6 +22,21 @@
 .MessageCardGroup {
 }
 
+.MessageCard-cardLeft {
+}
+
+.MessageCard-cardRight {
+}
+
+.MessageCard-author {
+}
+
+.MessageCard-payload {
+}
+
+.MessageCard-time {
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
