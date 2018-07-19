@@ -6,17 +6,30 @@ import './App.css';
 
 class App extends Component {
   state = {
+    user: 'derek',
     numUsers: 0,
+    messages: [
+      {
+        author: 'derek',
+        payload: 'hi',
+        timestamp: new Date().getTime(),
+      },
+      {
+        author: 'jason',
+        payload: 'ok',
+        timestamp: new Date().getTime(),
+      },
+    ],
   };
   render() {
-    const { numUsers } = this.state;
+    const { numUsers, user, messages } = this.state;
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
         </header>
         <Welcome numUsers={numUsers} />
-        <MessageCardGroup messages={[1, 2]} />
+        <MessageCardGroup messages={messages} user={user} />
       </div>
     );
   }
