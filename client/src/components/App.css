@@ -1,4 +1,7 @@
 .App {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
   text-align: center;
 }
 
@@ -8,6 +11,10 @@
 }
 
 .App-header {
+  flex: 1 1;
+  background-color: #00ab6c;
+  min-height: 40px;
+  padding: 10px;
   background-color: #222;
   height: 150px;
   padding: 20px;
@@ -20,24 +27,38 @@
 }
 
 .MessageCardGroup {
+  flex: 2 1 80%;
+  overflow-y: auto;
 }
 
 .MessageCard-cardLeft {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
 }
 
 .MessageCard-cardRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 10px;
 }
 
 .MessageCard-author {
+  color: #0006;
 }
 
 .MessageCard-payload {
+  color: black;
+  background-color: #f1f0f0;
+  border-radius: 5px;
+  padding: 5px;
+  display: inline-block;
 }
 
 .MessageCard-time {
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  color: #0006;
+  padding-top: 10px;
+  text-align: right;
 }
