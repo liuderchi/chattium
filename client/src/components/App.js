@@ -1,38 +1,56 @@
 import React, { Component } from 'react';
+import openSocket from 'socket.io-client';
 import logo from '../icons/logo.svg';
 import Welcome from './Welcome';
 import MessageCardGroup from './MessageCardGroup';
 import './App.css';
 
+const WS_API = 'http://localhost:3000';
+const REST_API = 'http://localhost:3000';
+const NEW_MESSAGE = 'new message';
+const USER_COUNT = 'user count';
+
 class App extends Component {
   state = {
     user: 'derek',
     numUsers: 0,
-    messages: [
-      {
-        author: 'derek',
-        payload: 'hi',
-        timestamp: new Date().getTime(),
-      },
-      {
-        author: 'jason',
-        payload: 'ok',
-        timestamp: new Date().getTime(),
-      },
-    ],
+    messages: [],
     inputText: '',
+    socket: openSocket(WS_API),
   };
+  componentDidMount() {
+    this.subscribeWS();
+    fetch(`${REST_API}/messages`)
+      .then(res => res.json())
+      .then(messages => this.setState({ messages }));
+  }
   onInputChange = e => {
     e.preventDefault();
     this.setState({ inputText: e.target.value });
   };
   onSubmit = e => {
     e.preventDefault();
-    const { inputText } = this.state;
+    const { user, socket, inputText } = this.state;
     if (!inputText) return;
-    console.warn(inputText);
-    // TODO send message to server
+    socket.emit(NEW_MESSAGE, {
+      author: user,
+      payload: inputText,
+    });
     this.setState({ inputText: '' });
+  };
+  subscribeWS = () => {
+    const { socket } = this.state;
+    socket.on(NEW_MESSAGE, msg => {
+      const { messages } = this.state;
+      this.setState({
+        messages: [...messages, msg],
+      });
+    });
+    socket.on(USER_COUNT, ({ numUsers }) => {
+      this.setState({
+        numUsers,
+      });
+    });
   };
   render() {
     const { numUsers, user, messages, inputText } = this.state;
