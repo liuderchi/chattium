@@ -20,9 +20,23 @@ class App extends Component {
         timestamp: new Date().getTime(),
       },
     ],
+    inputText: '',
+  };
+  onInputChange = e => {
+    e.preventDefault();
+    this.setState({ inputText: e.target.value });
+  };
+  onSubmit = e => {
+    e.preventDefault();
+    const { inputText } = this.state;
+    if (!inputText) return;
+    console.warn(inputText);
+    // TODO send message to server
+    this.setState({ inputText: '' });
   };
   render() {
-    const { numUsers, user, messages } = this.state;
+    const { numUsers, user, messages, inputText } = this.state;
+    const { onSubmit, onInputChange } = this;
     return (
       <div className="App">
         <header className="App-header">
@@ -30,6 +44,14 @@ class App extends Component {
         </header>
         <Welcome numUsers={numUsers} />
         <MessageCardGroup messages={messages} user={user} />
+        <form className="App-form" onSubmit={onSubmit}>
+          <input
+            autoComplete="off"
+            value={inputText}
+            onChange={onInputChange}
+          />
+          <button type="submit">Send</button>
+        </form>
       </div>
     );
   }

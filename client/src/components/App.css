@@ -26,6 +26,29 @@
   color: darkgrey;
 }
 
+.App-form {
+  flex: 1 1;
+  min-height: 60px;
+  display: flex;
+  width: 100%;
+}
+
+.App-form input {
+  width: 100%;
+  font-size: 1rem;
+}
+
+.App-form input:focus {
+  outline: none;
+}
+
+.App-form button {
+  width: 100px;
+  height: 100%;
+  font-size: 1rem;
+  background-color: darkgrey;
+}
+
 .MessageCardGroup {
   flex: 2 1 80%;
   overflow-y: auto;
