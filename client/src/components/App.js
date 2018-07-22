@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import openSocket from 'socket.io-client';
-import logo from '../icons/logo.svg';
+import logo from '../icons/logo.png';
 import Welcome from './Welcome';
 import MessageCardGroup from './MessageCardGroup';
 import './App.css';
