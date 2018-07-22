@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import openSocket from 'socket.io-client';
+import Modal from 'react-modal';
+import Cookies from 'js-cookie';
 import logo from '../icons/logo.png';
 import Welcome from './Welcome';
 import MessageCardGroup from './MessageCardGroup';
@@ -12,11 +14,12 @@ const USER_COUNT = 'user count';
 
 class App extends Component {
   state = {
-    user: 'derek',
+    user: Cookies.get('user') || '',
     numUsers: 0,
     messages: [],
     inputText: '',
     socket: openSocket(WS_API),
+    showModal: true,
   };
   msgCardGroup = null;
   componentDidMount() {
@@ -25,6 +28,11 @@ class App extends Component {
       .then(res => res.json())
       .then(messages => this.setState({ messages }));
   }
+  closeModal = e => {
+    e.preventDefault();
+    if (!this.state.user) return;
+    this.setState({ showModal: false });
+  };
   onInputChange = e => {
     e.preventDefault();
     this.setState({ inputText: e.target.value });
@@ -38,6 +46,11 @@ class App extends Component {
       payload: inputText,
     });
     this.setState({ inputText: '' });
+  };
+  onUserChange = e => {
+    e.preventDefault();
+    Cookies.set('user', e.target.value);
+    this.setState({ user: e.target.value });
   };
   setMsgCardGroupRef = el => (this.msgCardGroup = el);
   scrollBottom = () => {
@@ -61,8 +74,15 @@ class App extends Component {
     });
   };
   render() {
-    const { numUsers, user, messages, inputText } = this.state;
-    const { onSubmit, onInputChange, setMsgCardGroupRef } = this;
+    const { numUsers, user, messages, inputText, showModal } = this.state;
+    const {
+      onSubmit,
+      onInputChange,
+      onUserChange,
+      closeModal,
+      setMsgCardGroupRef,
+    } = this;
+
     return (
       <div className="App">
         <header className="App-header">
@@ -82,6 +102,19 @@ class App extends Component {
           />
           <button type="submit">Send</button>
         </form>
+        <Modal isOpen={showModal} contentLabel="Enter User Name">
+          <div className="App-Modal">
+            <h3>{`What's your name?`}</h3>
+            <form onSubmit={closeModal}>
+              <input
+                autoComplete="off"
+                value={user}
+                onChange={onUserChange}
+                placeholder="Tony Stark"
+              />
+            </form>
+          </div>
+        </Modal>
       </div>
     );
   }
