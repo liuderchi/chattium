@@ -18,6 +18,7 @@ class App extends Component {
     inputText: '',
     socket: openSocket(WS_API),
   };
+  msgCardGroup = null;
   componentDidMount() {
     this.subscribeWS();
     fetch(`${REST_API}/messages`)
@@ -38,6 +39,12 @@ class App extends Component {
     });
     this.setState({ inputText: '' });
   };
+  setMsgCardGroupRef = el => (this.msgCardGroup = el);
+  scrollBottom = () => {
+    if (this.msgCardGroup && this.msgCardGroup.root) {
+      this.msgCardGroup.root.scrollTop = this.msgCardGroup.root.scrollHeight;
+    }
+  };
   subscribeWS = () => {
     const { socket } = this.state;
     socket.on(NEW_MESSAGE, msg => {
@@ -45,6 +52,7 @@ class App extends Component {
       this.setState({
         messages: [...messages, msg],
       });
+      this.scrollBottom();
     });
     socket.on(USER_COUNT, ({ numUsers }) => {
       this.setState({
@@ -54,14 +62,18 @@ class App extends Component {
   };
   render() {
     const { numUsers, user, messages, inputText } = this.state;
-    const { onSubmit, onInputChange } = this;
+    const { onSubmit, onInputChange, setMsgCardGroupRef } = this;
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
         </header>
         <Welcome numUsers={numUsers} />
-        <MessageCardGroup messages={messages} user={user} />
+        <MessageCardGroup
+          ref={setMsgCardGroupRef}
+          messages={messages}
+          user={user}
+        />
         <form className="App-form" onSubmit={onSubmit}>
           <input
             autoComplete="off"
