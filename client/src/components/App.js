@@ -7,8 +7,12 @@ import Welcome from './Welcome';
 import MessageCardGroup from './MessageCardGroup';
 import './App.css';
 
-const WS_API = 'http://localhost:3000';
-const REST_API = 'http://localhost:3000';
+const WS_API =
+  process.env.REACT_APP_ENV === 'DEV' ? 'http://localhost:3000' : null;
+const REST_API =
+  process.env.REACT_APP_ENV === 'DEV'
+    ? 'http://localhost:3000'
+    : `${window.location.origin}:443`;
 const NEW_MESSAGE = 'new message';
 const USER_COUNT = 'user count';
 
