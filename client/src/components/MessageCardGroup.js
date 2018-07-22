@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import MessageCard from './MessageCard';
 
 class MessageCardGroup extends Component {
+  setRef = el => (this.root = el);
   render() {
     const { messages, user } = this.props;
     return (
-      <div className="MessageCardGroup">
+      <div ref={this.setRef} className="MessageCardGroup">
         {messages.map((message, i) => (
           <MessageCard
             key={i}
