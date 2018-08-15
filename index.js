@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const http = require('http');
 const socketIO = require('socket.io');
+const socketIOAuth = require('socketio-auth');
 
 const port = process.env.PORT || 3000;
 const MESSAGES_LIMIT = 100;
@@ -49,4 +50,21 @@ io.on(CONNECTION, socket => {
     io.emit(USER_COUNT, { numUsers });
     console.log('user count:', numUsers);
   });
+});
+
+socketIOAuth(io, {
+  authenticate: function(socket, data, callback) {
+    let authResult = false;
+    try {
+      const { username, password } = data;
+      console.warn(`auth data: ${username} ${password}`);
+      authResult = username === 'Derek' && password === 'secret';
+    } catch (e) {
+      console.error(e);
+      authResult = false;
+    } finally {
+      callback(null, authResult);
+    }
+  },
+  timeout: 'none',
 });

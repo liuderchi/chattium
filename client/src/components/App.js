@@ -64,6 +64,12 @@ class App extends Component {
   };
   subscribeWS = () => {
     const { socket } = this.state;
+    socket.on('connect', function() {
+      socket.emit('authentication', { username: 'Derek', password: 'secret' });
+      socket.on('authenticated', function(res) {
+        console.warn(`authenticated with result: ${res}`);
+      });
+    });
     socket.on(NEW_MESSAGE, msg => {
       const { messages } = this.state;
       this.setState({
