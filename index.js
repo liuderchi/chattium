@@ -24,10 +24,6 @@ app.use((req, res, next) => {
 });
 app.get('/messages', (req, res) => res.send(messages));
 
-server.listen(port, () => {
-  console.log(`Server listening at port ${port}`);
-});
-
 io.on(CONNECTION, socket => {
   console.log('connected');
   ++numUsers;
@@ -67,4 +63,8 @@ socketIOAuth(io, {
     }
   },
   timeout: 'none',
+});
+
+server.listen(port, () => {
+  console.log(`Server listening at port ${port}`);
 });
