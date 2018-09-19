@@ -8,10 +8,12 @@ import MessageCardGroup from './MessageCardGroup';
 import './App.css';
 
 const WS_API =
-  process.env.REACT_APP_ENV === 'DEV' ? 'http://localhost:3000' : null;
+  process.env.REACT_APP_ENV !== 'PROD_NOW'
+    ? `${window.location.protocol}//${window.location.hostname}:3000`
+    : null;
 const REST_API =
-  process.env.REACT_APP_ENV === 'DEV'
-    ? 'http://localhost:3000'
+  process.env.REACT_APP_ENV !== 'PROD_NOW'
+    ? `${window.location.protocol}//${window.location.hostname}:3000`
     : `${window.location.origin}:443`;
 const NEW_MESSAGE = 'new message';
 const USER_COUNT = 'user count';

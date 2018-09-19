@@ -11,7 +11,7 @@
     "socket.io-client": "^2.1.1"
   },
   "scripts": {
-    "start": "PORT=3001 REACT_APP_ENV=DEV react-scripts start",
+    "start": "PORT=3001 react-scripts start",
     "build": "react-scripts build && sw-precache --config=sw-precache-config.js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
