@@ -7,7 +7,7 @@ import './App.css';
 class App extends Component {
   state = {
     user: 'derek',
-    numUsers: 0,
+    numUsers: 3,
     messages: [
       {
         author: 'derek',
