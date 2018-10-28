@@ -6,24 +6,11 @@ import './App.css';
 
 class App extends Component {
   state = {
-    user: 'derek',
-    numUsers: 0,
-    messages: [
-      {
-        author: 'derek',
-        payload: 'hi',
-        timestamp: new Date().getTime(),
-      },
-      {
-        author: 'jason',
-        payload: 'ok',
-        timestamp: new Date().getTime(),
-      },
-    ],
     inputText: '',
   };
   onInputChange = e => {
     e.preventDefault();
+    console.log(e.target.value);
     this.setState({ inputText: e.target.value });
   };
   onSubmit = e => {
@@ -35,21 +22,12 @@ class App extends Component {
     this.setState({ inputText: '' });
   };
   render() {
-    const { numUsers, user, messages, inputText } = this.state;
+    const { inputText } = this.state;
     const { onSubmit, onInputChange } = this;
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-        </header>
-        <Welcome numUsers={numUsers} />
-        <MessageCardGroup messages={messages} user={user} />
         <form className="App-form" onSubmit={onSubmit}>
-          <input
-            autoComplete="off"
-            value={inputText}
-            onChange={onInputChange}
-          />
+          <input value={inputText} onChange={onInputChange} />
           <button type="submit">Send</button>
         </form>
       </div>
